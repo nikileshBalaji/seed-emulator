@@ -251,7 +251,7 @@ We can generate the `abi` and `bin` files using the following command.
 
 ```
 solc --abi <filename.sol> | awk '/JSON ABI/{x=1}x' | sed 1d > contract.abi
-solc --bin <filename.sol> | awk '/Binary:/{x=1;next}x' | sed 1d > contract.abi
+solc --bin <filename.sol> | awk '/Binary:/{x=1;next}x' > contract.bin
 ```
 
 ## C.2 Deploy Smart Contract
