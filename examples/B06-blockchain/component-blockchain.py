@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 # encoding: utf-8
 
-from seedemu import *
+from seedemu.core import Emulator
+from EthereumService import SmartContract, EthereumServer, EthereumService
 
 emu = Emulator()
 
@@ -32,9 +33,11 @@ e6.createNewAccount().createNewAccount()
 
 # Create a smart contract and deploy it from node e3 
 # We need to put the compiled smart contracts inside the Contracts/ folder
-smart_contract = SmartContract("./Contracts/contract.bin", "./Contracts/contract.abi")
+# the last argument represents the filename in which the transcation will be stored.
+smart_contract = SmartContract("./Contracts/contract.bin", "./Contracts/contract.abi", "SmartContract")
 e3.deploySmartContract(smart_contract)
-
+crowd_funding = SmartContract("./Contracts/crowd.bin", "./Contracts/crowd.abi", "crowd_funding")
+e3.deploySmartContract(crowd_funding)
 # Customizing the display names (for visualization purpose)
 emu.getVirtualNode('eth1').setDisplayName('Ethereum-1')
 emu.getVirtualNode('eth2').setDisplayName('Ethereum-2')
